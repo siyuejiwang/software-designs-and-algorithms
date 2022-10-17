@@ -11,6 +11,7 @@ export class Triangle extends Shape {
       super([pointA, pointB, pointC])
     }
   }
+
   toString() {
     let pointsStrArr: string[] = []
     for (let i = 0; i < this.points.length; i++) {
@@ -18,15 +19,14 @@ export class Triangle extends Shape {
     }
     return `Triangle[${pointsStrArr.join(',')}]`;
   }
+  
   getType() {
     const sideLengthArray: number[] = [];
-    const secondLength: number[] = [];
     for (let i = 0; i < this.points.length; i++) {
       const prevPoint = i
         ? this.points[i - 1]
         : this.points[this.points.length - 1];
       const sideLength = this.points[i].distance(prevPoint);
-      secondLength.push(sideLength);
       if (!sideLengthArray.includes(sideLength)) {
         sideLengthArray.push(sideLength);
       }

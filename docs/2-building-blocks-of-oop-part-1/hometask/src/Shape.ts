@@ -3,6 +3,7 @@ export abstract class Shape {
   private color: string;
   private filled: boolean;
   points: Point[];
+
   constructor(points: Point[]);
   constructor(points: Point[], color: string, filled: boolean);
   constructor(points: Point[], color?: string, filled?: boolean) {
@@ -13,13 +14,11 @@ export abstract class Shape {
     this.color = color || 'green';
     this.filled = typeof filled === 'boolean' ? filled : true;
   }
+  
   toString() {
-    const pointsStrArr: string[] = [];
-    for (let point of this.points) {
-      pointsStrArr.push(point.toString());
-    }
-    return `A Shape with color of ${this.color} and ${this.filled ? 'filled' : 'not filled'}. Points: ${pointsStrArr.join(', ')}.`
+    return `A Shape with color of ${this.color} and ${this.filled ? 'filled' : 'not filled'}. Points: ${this.points.join(', ')}.`
   }
+
   getPerimeter() {
     let perimerter = 0;
     for (let i = 0; i < this.points.length; i++) {
@@ -28,5 +27,6 @@ export abstract class Shape {
     }
     return perimerter;
   }
+
   abstract getType(): string;
 }
