@@ -14,15 +14,19 @@ export class Point {
     }
 
     distance();
-    distance(other: Point);
+    distance(point: Point);
     distance(x: number, y: number);
-    distance(otherOrX?: Point | number, y?: number) {
-        if (typeof otherOrX === 'number' && typeof y === 'number') {
-            return Number(Math.sqrt(Math.pow(this.x - otherOrX, 2) + Math.pow(this.y - y, 2)).toFixed(2));
-        } else if (otherOrX instanceof Point) {
-            return Number(Math.sqrt(Math.pow(this.x - otherOrX.x, 2) + Math.pow(this.y - otherOrX.y, 2)).toFixed(2));
+    distance(pointOrX?: Point | number, y?: number) {
+        if (typeof pointOrX === 'number' && typeof y === 'number') {
+            return this.calDisFromPoint(pointOrX, y);
+        } else if (pointOrX instanceof Point) {
+            return this.calDisFromPoint(pointOrX.x, pointOrX.y);
         } else {
-            return Number(Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2)).toFixed(2));
+            return this.calDisFromPoint(0, 0);
         }
+    }
+
+    calDisFromPoint(x: number, y: number) {
+        return Number(Math.sqrt(Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2)).toFixed(2));
     }
 }
