@@ -2,7 +2,7 @@ import { Shape } from './Shape'
 import { Point } from './Point';
 
 export class Triangle extends Shape {
-  private triangleType: string;
+  private triangleType: 'isosceles triangle' | 'equilateral triangle' | 'scalene triangle';
 
   constructor(pointA: Point, pointB: Point, pointC: Point);
   constructor(pointA: Point, pointB: Point, pointC: Point, color: string, filled: boolean);
@@ -12,10 +12,10 @@ export class Triangle extends Shape {
     } else {
       super([pointA, pointB, pointC]);
     }
-    this.identifyTriangleType();
+    this._identifyTriangleType();
   }
 
-  identifyTriangleType() {
+  private _identifyTriangleType() {
     const sideLengthArray: number[] = [];
     for (let i = 0; i < this.points.length; i++) {
       const prevPoint = i ? this.points[i - 1] : this.points[this.points.length - 1];
